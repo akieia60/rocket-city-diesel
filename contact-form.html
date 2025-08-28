@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get Quote - Rocket City Diesel Emergency Service</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #1976d2 0%, #d32f2f 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .form-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: #d32f2f;
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .form-content {
+            padding: 40px;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        input, select, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+        
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #1976d2;
+        }
+        
+        .submit-btn {
+            width: 100%;
+            background: #ff5722;
+            color: white;
+            padding: 15px;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .submit-btn:hover {
+            background: #e64a19;
+        }
+        
+        .emergency-notice {
+            background: #d32f2f;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-weight: bold;
+            margin-bottom: 20px;
+            border-radius: 8px;
+        }
+        
+        .back-link {
+            text-align: center;
+            margin-top: 20px;
+        }
+        
+        .back-link a {
+            color: #1976d2;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <div class="header">
+            <h1>🚛 Request Emergency Service Quote</h1>
+            <p>Get fast response from certified diesel mechanics</p>
+        </div>
+        
+        <div class="form-content">
+            <div class="emergency-notice">
+                🚨 EMERGENCY? Call (256) 555-HELP for immediate dispatch! 🚨
+            </div>
+            
+            <form action="https://formspree.io/f/your-form-id" method="POST">
+                <div class="form-group">
+                    <label for="name">Name *</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="phone">Phone Number *</label>
+                    <input type="tel" id="phone" name="phone" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email">
+                </div>
+                
+                <div class="form-group">
+                    <label for="service-type">Type of Service *</label>
+                    <select id="service-type" name="service-type" required>
+                        <option value="">Select service type...</option>
+                        <option value="emergency-roadside">Emergency Roadside Assistance</option>
+                        <option value="semi-truck">Semi-Truck Repair</option>
+                        <option value="heavy-equipment">Heavy Equipment/Construction</option>
+                        <option value="fleet-maintenance">Fleet Maintenance Contract</option>
+                        <option value="diagnostic">Diagnostic Service</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="equipment">Equipment/Vehicle Details</label>
+                    <input type="text" id="equipment" name="equipment" placeholder="e.g. 2018 Peterbilt 579, Caterpillar 320 Excavator">
+                </div>
+                
+                <div class="form-group">
+                    <label for="location">Location/Address</label>
+                    <input type="text" id="location" name="location" placeholder="Street address or nearest intersection">
+                </div>
+                
+                <div class="form-group">
+                    <label for="problem">Describe the Problem</label>
+                    <textarea id="problem" name="problem" rows="4" placeholder="What symptoms are you experiencing? When did it start?"></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="urgency">Urgency Level *</label>
+                    <select id="urgency" name="urgency" required>
+                        <option value="">Select urgency...</option>
+                        <option value="emergency">🚨 EMERGENCY - Stranded/Broken Down</option>
+                        <option value="urgent">⚡ URGENT - Same Day Service Needed</option>
+                        <option value="soon">📅 SOON - Within 24-48 Hours</option>
+                        <option value="scheduled">🗓️ SCHEDULED - Plan for Later</option>
+                    </select>
+                </div>
+                
+                <button type="submit" class="submit-btn">
+                    📞 Send Quote Request
+                </button>
+            </form>
+            
+            <div class="back-link">
+                <a href="index.html">← Back to Main Page</a>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Form submission tracking
+        document.querySelector('form').addEventListener('submit', function() {
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'lead_form_submit', {
+                    'event_category': 'lead_generation',
+                    'event_label': 'quote_request_form'
+                });
+            }
+        });
+    </script>
+</body>
+</html>
