@@ -15,6 +15,7 @@ echo '<?xml version="1.0" encoding="UTF-8"?>';
     <Dial callerId="<?php echo $to; ?>" timeout="30">
         <Number><?php echo $forwardTo; ?></Number>
     </Dial>
-    <Say voice="alice">We're currently assisting other customers. Please leave your name, phone number, and location after the tone, and we'll call you back within 15 minutes.</Say>
+    <Say voice="alice">We're currently assisting other customers. Please leave your name, location, and describe your diesel emergency. We'll dispatch a qualified technician and text you their contact information and arrival time within minutes.</Say>
     <Record timeout="60" transcribe="true" transcribeCallback="https://rocket-city-diesel.vercel.app/transcribe.php"/>
+    <Say voice="alice">Thank you. We've received your emergency request and are dispatching assistance now.</Say>
 </Response>
