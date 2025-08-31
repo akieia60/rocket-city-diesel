@@ -1,37 +1,28 @@
 <?php
-// Voicemail transcription handler
+// Enhanced transcription handler with business intelligence
 $from = $_POST['From'];
 $transcriptionText = $_POST['TranscriptionText'];
 $recordingUrl = $_POST['RecordingUrl'];
 $callSid = $_POST['CallSid'];
 
-// Send email notification
-$to = 'akieiadavis@gmail.com';
-$subject = '🚛 ROCKET CITY DIESEL - New Service Request';
-$message = "
-NEW EMERGENCY DIESEL SERVICE REQUEST:
+// Process the request through business handler
+$postData = http_build_query([
+    'From' => $from,
+    'TranscriptionText' => $transcriptionText,
+    'RecordingUrl' => $recordingUrl,
+    'CallSid' => $callSid
+]);
 
-Customer Phone: $from
-Call Time: " . date('Y-m-d H:i:s') . "
-Message: $transcriptionText
+$context = stream_context_create([
+    'http' => [
+        'method' => 'POST',
+        'header' => 'Content-type: application/x-www-form-urlencoded',
+        'content' => $postData
+    ]
+]);
 
-Recording: $recordingUrl
-Call ID: $callSid
-
-ACTION REQUIRED: Call customer back immediately at $from
-
-This is an automated message from Rocket City Diesel.
-";
-
-$headers = 'From: noreply@rocket-city-diesel.vercel.app' . "\r\n" .
-    'Reply-To: akieiadavis@gmail.com' . "\r\n" .
-    'X-Mailer: PHP/' . phpversion();
-
-mail($to, $subject, $message, $headers);
-
-// Log the call
-$log = date('Y-m-d H:i:s') . " | $from | $transcriptionText\n";
-file_put_contents('call_log.txt', $log, FILE_APPEND);
+// Call the business handler
+$result = file_get_contents('https://rocket-city-diesel.vercel.app/business-handler.php', false, $context);
 
 http_response_code(200);
 echo "OK";
